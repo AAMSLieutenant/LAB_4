@@ -27,7 +27,20 @@ public class Application {
         Track t=new Track();
 //        Help.insertTracks();
         ArrayList<Track> arr=Help.getTracks("File.txt");
+        System.out.println("___________________");
+        Help.sort(arr,Styles.RAP);
+        System.out.println("___________________");
         Help.getLength(arr);
+        System.out.println("___________________");
+        Help.isertTrack("perName",Styles.CLASSIC,5.54);
+        System.out.println("___________________");
+        arr=Help.getTracks("File.txt");
+        System.out.println("___________________");
+        Help.getLength(arr);
+        System.out.println("___________________");
+        Help.sort(arr,Styles.CLASSIC);
+        System.out.println("___________________");
+        Help.getByAmmount(arr,5);
     }
 
 }

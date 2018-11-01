@@ -14,6 +14,10 @@ public class Help {
 
     private static Locale current;
     private static ResourceBundle rb;
+    private static String tName;
+    private static Styles tStyle;
+    private static double tLength;
+
 
     private static final Logger log=Logger.getLogger(Help.class);
     {
@@ -106,10 +110,8 @@ public class Help {
             ObjectInputStream istream= new ObjectInputStream(fis);
             Object obj;
             while (true){
-                //for(int i=0;i<9;i++){
 
-                System.out.println("Reading");
-//                Track t=(Track)istream.readObject();
+//                System.out.println("Reading");
 
                 if(fis.available()!=0){
                     obj=istream.readObject();
@@ -120,7 +122,7 @@ public class Help {
                     arr.add((Track)obj);
                 }
                 else{
-                    System.out.println("NULL");
+//                    System.out.println("NULL");
                     break;
                 }
 
@@ -149,11 +151,82 @@ public class Help {
             minutes+=(int)(arr.get(i).getTrackLength());
             seconds+=(arr.get(i).getTrackLength())%((int)(arr.get(i).getTrackLength()));
         }
-        //int sec=(int)seconds*100;
-        System.out.println("MIN:"+minutes+" SEC:"+seconds);
+
+//        System.out.println("MIN:"+minutes" SEC:"+seconds);
         minutes+=(int)(seconds*100/60);
         seconds=(seconds*100)%60;
-        System.out.println("MIN:"+minutes+" SEC:"+seconds);
+        System.out.println("Overall length:\n"+"MIN:"+minutes+" SEC:"+seconds);
+    }
+
+
+    public static void sort(ArrayList<Track> arr, Styles s){
+
+        ArrayList<Track> temp=new ArrayList<Track>();
+
+        for(Track t:arr){
+            if(t.getTrackStyle()==s){
+                temp.add(t);
+            }
+        }
+        for(Track t:arr){
+            if(t.getTrackStyle()!=s){
+                temp.add(t);
+            }
+        }
+        for(int i=0;i<temp.size();i++){
+//            System.out.println(arr.get(i).getTrackName()+" "+arr.get(i).getTrackStyle()+" "+arr.get(i).getTrackLength());
+            System.out.println(temp.get(i).getTrackId()+" "
+                    +temp.get(i).getTrackName()+" "
+                    +temp.get(i).getTrackStyle()+" "
+                    +temp.get(i).getTrackLength());
+
+        }
 
     }
+
+
+    public static void getByAmmount(ArrayList<Track> arr, double lengthAmmount){
+        ArrayList<Track> temp=new ArrayList<Track>();
+
+        for(Track t:arr){
+            if(t.getTrackLength()<=lengthAmmount){
+                temp.add(t);
+            }
+        }
+        if(temp.size()==0){
+            System.out.println("No tracks are in this length ammount");
+        }
+        else {
+            for (int i = 0; i < temp.size(); i++) {
+                System.out.println(temp.get(i).getTrackId() + " "
+                        + temp.get(i).getTrackName() + " "
+                        + temp.get(i).getTrackStyle() + " "
+                        + temp.get(i).getTrackLength());
+
+            }
+        }
+    }
+
+    public static void isertTrack(String tName, Styles tStyle, double tLength){
+        ArrayList<Track> arr=getTracks("File.txt");
+        int nextId=arr.size()+1;
+        try{
+            File fw = new File("File.txt");
+            FileOutputStream fos = new FileOutputStream(fw);
+            ObjectOutputStream ostream = new ObjectOutputStream(fos);
+            arr.add(new Track(nextId,tName,tStyle,tLength));
+            for(int i=0;i<arr.size();i++){
+//                System.out.println(arr.get(i).getTrackName());
+                ostream.writeObject((arr.get(i)));
+            }
+            ostream.close();
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+
+
+    }
+
+
 }
