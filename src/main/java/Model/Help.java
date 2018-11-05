@@ -12,8 +12,7 @@ import java.util.Scanner;
 public class Help {
 
 
-    private static Locale current;
-    private static ResourceBundle rb;
+
     private static String tName;
     private static Styles tStyle;
     private static double tLength;
@@ -39,38 +38,7 @@ public class Help {
 
 
 //Получение локализации
-    private static void getLocale(){
-        String choice=new String();
-        Scanner sc=new Scanner(System.in);
-        String country=new String();
-        String language=new String();
-        while(true){
-            System.out.print("Choose your language: (1-english, 2-українська, 3-русский:");
-            choice=sc.next();
-            if(isNumber(choice)){
-                int c=Integer.parseInt(choice);
-                switch(c){
-                    case 1:country="US";language="EN";break;
-                    case 2:country="UA";language="UK";break;
-                    case 3:country="RU";language="RU";break;
-                }
-                break;
-            }
-            else{
-                log.error("User made mistake in choosing the language");
-                System.out.println("wrong format");
-            }
-        }
-        current=new Locale(language,country);
-        rb=ResourceBundle.getBundle("text",current);
-        String st=rb.getString("strTypeChoice");
-//        String s1=new String();
-//        try{
-//            s1=new String(st.getBytes("cp1252"), "cp1251");
-//        }
-//        catch(Exception e){}
-//        System.out.println(s1);
-    }
+
 
 
 //Изначальное наполнение медиатеки

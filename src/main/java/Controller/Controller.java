@@ -6,11 +6,14 @@ import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
 
 import java.util.ArrayList;
+import java.util.Locale;
+import java.util.ResourceBundle;
 import java.util.Scanner;
 
 public class Controller {
     private static final Logger log=Logger.getLogger(Help.class);
-
+    public static Locale current;
+    public static ResourceBundle rb;
 
 
     private static String fileName="File.txt";
@@ -21,12 +24,49 @@ public class Controller {
     }
 
 
+    private static void getLocale(){
+        String choice=new String();
+        Scanner sc=new Scanner(System.in);
+        String country=new String();
+        String language=new String();
+        while(true){
+            System.out.print("Choose your language: (1-english, 2-українська, 3-русский:");
+            choice=sc.next();
+            if(Help.isNumber(choice)){
+                int c=Integer.parseInt(choice);
+                switch(c){
+                    case 1:country="US";language="EN";break;
+                    case 2:country="UA";language="UK";break;
+                    case 3:country="RU";language="RU";break;
+                }
+                break;
+            }
+            else{
+                log.error("User made mistake in choosing the language");
+                System.out.println("wrong format");
+            }
+        }
+        current=new Locale(language,country);
+        rb=ResourceBundle.getBundle("text",current);
+        String st=rb.getString("strTypeChoice");
+//        String s1=new String();
+//        try{
+//            s1=new String(st.getBytes("cp1252"), "cp1251");
+//        }
+//        catch(Exception e){}
+//        System.out.println(s1);
+    }
+
     private static void insertData(){
         Scanner sc=new Scanner(System.in);
         String choice;
 
         System.out.println("Insert the name of the track:");
+        String str=rb.getString("strTypeChoice");
+        String res=new String(str.getBytes("cp1252"), "cp1251");
+        System.out.println(res);
         choice=sc.nextLine();
+        log.info("name of the track inserted");
         Help.settName(choice);
 
 
@@ -38,7 +78,7 @@ public class Controller {
         System.out.println("3 - classic");
         System.out.println("4 - metal");
         choice = sc.nextLine();
-
+        log.info("style of the track inserted");
         switch (Integer.parseInt(choice)) {
             case 1: st = Styles.ROCK;break;
             case 2: st = Styles.RAP;break;
@@ -48,9 +88,11 @@ public class Controller {
         Help.settStyle(st);
         System.out.println("Insert the length of the track:");
         choice=sc.nextLine();
+        log.info("length of the track inserted");
         Help.settLength(Double.parseDouble(choice));
 
         Help.insertTrack(Help.gettName(), Help.gettStyle(), Help.gettLength());
+        log.info("new track is inserted");
     }
 
 
@@ -72,6 +114,7 @@ public class Controller {
 //                    break;
                     if(ch==1){
                         insertData();
+                        log.info("insertData is started");
                     }
                     if(ch==2){
                         ArrayList<Track> tracks = Help.getTracks(fileName);
@@ -95,6 +138,7 @@ public class Controller {
                                 }
                                 ArrayList<Track> tracks = Help.getTracks(fileName);
                                 Help.sort(tracks,st);
+                                log.info("sort method is chosen");
 
                                 break;
                             }
@@ -109,22 +153,25 @@ public class Controller {
                                 ArrayList<Track> tracks=Help.getTracks(fileName);
                                 int am=Integer.parseInt(choice);
                                 Help.getByAmmount(tracks,am);
+                                log.info("amountSort is chosen");
                                 break;
                             }
                         }
                     }
                     if(ch==5){
-                        System.out.println("REsult:"+Help.getLength(Help.getTracks("File.txt")));
+                        System.out.println("Result:"+Help.getLength(Help.getTracks("File.txt")));
                     }
 
 
                 }
                 else{
                     System.out.println("Wrong data insert");
+                    log.error("wrong data insert");
                 }
             }
             else{
                 System.out.println("Wrong data insert");
+                log.error("wrong data insert");
             }
         }
 
