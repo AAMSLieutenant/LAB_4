@@ -25,6 +25,7 @@ public class Application {
         final Logger log=Logger.getLogger(Help.class);
 
         PropertyConfigurator.configure("log4j.properties");
+        log.info("Application started");
 //        Track t=new Track("Слющай дарагой", Styles.ROCK,2.33);
 //        t.writeTrack(t);
 //        t=t.readTrack("File.txt");
