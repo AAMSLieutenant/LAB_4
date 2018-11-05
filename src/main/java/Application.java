@@ -1,3 +1,4 @@
+import Controller.Controller;
 import Model.Help;
 import Model.Styles;
 import Model.Track;
@@ -20,27 +21,32 @@ public class Application {
 
 
     public static void main(String[] args) {
+
+        final Logger log=Logger.getLogger(Help.class);
+
+        PropertyConfigurator.configure("log4j.properties");
 //        Track t=new Track("Слющай дарагой", Styles.ROCK,2.33);
 //        t.writeTrack(t);
 //        t=t.readTrack("File.txt");
 //        System.out.println(t.getTrackName()+" "+t.getTrackStyle()+" "+t.getTrackLength());
-        Track t=new Track();
+
 //        Help.insertTracks();
-        ArrayList<Track> arr=Help.getTracks("File.txt");
-        System.out.println("___________________");
-        Help.sort(arr,Styles.RAP);
-        System.out.println("___________________");
-        Help.getLength(arr);
-        System.out.println("___________________");
-        Help.isertTrack("perName",Styles.CLASSIC,5.54);
-        System.out.println("___________________");
-        arr=Help.getTracks("File.txt");
-        System.out.println("___________________");
-        Help.getLength(arr);
-        System.out.println("___________________");
-        Help.sort(arr,Styles.CLASSIC);
-        System.out.println("___________________");
-        Help.getByAmmount(arr,5);
+//        ArrayList<Track> arr=Help.getTracks("File.txt");
+//        System.out.println("___________________");
+//        Help.sort(arr,Styles.RAP);
+//        System.out.println("___________________");
+//        Help.getLength(arr);
+//        System.out.println("___________________");
+//        Help.isertTrack("perName",Styles.CLASSIC,5.54);
+//        System.out.println("___________________");
+//        arr=Help.getTracks("File.txt");
+//        System.out.println("___________________");
+//        Help.getLength(arr);
+//        System.out.println("___________________");
+//        Help.sort(arr,Styles.CLASSIC);
+//        System.out.println("___________________");
+//        Help.getByAmmount(arr,5);
+        Controller.view();
     }
 
 }

@@ -4,6 +4,7 @@ package Model;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.Objects;
 
 public class Track implements Serializable{
 
@@ -89,4 +90,19 @@ public class Track implements Serializable{
             return null;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Track)) return false;
+        Track track = (Track) o;
+        return getTrackId() == track.getTrackId() &&
+                Double.compare(track.getTrackLength(), getTrackLength()) == 0 &&
+                Objects.equals(getTrackName(), track.getTrackName()) &&
+                getTrackStyle() == track.getTrackStyle();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getTrackId(), getTrackName(), getTrackLength(), getTrackStyle());
+    }
 }

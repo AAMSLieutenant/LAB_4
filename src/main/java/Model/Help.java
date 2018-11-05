@@ -20,11 +20,11 @@ public class Help {
 
 
     private static final Logger log=Logger.getLogger(Help.class);
-    {
+    static{
         PropertyConfigurator.configure("log4j.properties");
     }
 
-
+//Проверка на введенное число
     public static boolean isNumber(String s){
         try {
             Integer.parseInt(s);
@@ -37,6 +37,8 @@ public class Help {
 
     }
 
+
+//Получение локализации
     private static void getLocale(){
         String choice=new String();
         Scanner sc=new Scanner(System.in);
@@ -70,6 +72,8 @@ public class Help {
 //        System.out.println(s1);
     }
 
+
+//Изначальное наполнение медиатеки
     public static void insertTracks(){
         try{
             ArrayList<Track> arr=new ArrayList<Track>();
@@ -101,6 +105,18 @@ public class Help {
     }
 
 
+
+
+    public static void printTracks(ArrayList<Track> tracks){
+        for(Track t:tracks){
+            System.out.println(t.getTrackId()+" "
+                    +t.getTrackName()+" "
+                    +t.getTrackStyle()+" "
+                    +t.getTrackLength());
+
+        }
+    }
+
     public static ArrayList<Track> getTracks(String fileName){
         try{
             ArrayList<Track> arr=new ArrayList<Track>();
@@ -115,21 +131,21 @@ public class Help {
 
                 if(fis.available()!=0){
                     obj=istream.readObject();
-                    System.out.println(((Track)obj).getTrackId()
-                            +((Track)obj).getTrackName()+" "
-                            +((Track)obj).getTrackStyle()+" "
-                            +((Track)obj).getTrackLength());
+//                    System.out.println(((Track)obj).getTrackId()
+//                            +((Track)obj).getTrackName()+" "
+//                            +((Track)obj).getTrackStyle()+" "
+//                            +((Track)obj).getTrackLength());
                     arr.add((Track)obj);
                 }
                 else{
 //                    System.out.println("NULL");
                     break;
                 }
-
+//                printTracks(arr);
 //                System.out.println(arr.get(i).getTrackName()+" "+arr.get(i).getTrackStyle()+" "+arr.get(i).getTrackLength());
             }
             istream.close();
-            System.out.println(arr.size());
+//            System.out.println(arr.size());
 //            for(int i=0;i<arr.size();i++){
 //                System.out.println("ARR "+arr.toString());
 //            }
@@ -142,7 +158,9 @@ public class Help {
 
     }
 
-    public static void getLength(ArrayList<Track> arr){
+
+//Рассчет длины медиатеки
+    public static double getLength(ArrayList<Track> arr){
         double length;
         int minutes=0;
         double seconds=0;
@@ -155,11 +173,17 @@ public class Help {
 //        System.out.println("MIN:"+minutes" SEC:"+seconds);
         minutes+=(int)(seconds*100/60);
         seconds=(seconds*100)%60;
-        System.out.println("Overall length:\n"+"MIN:"+minutes+" SEC:"+seconds);
+        double result=minutes+seconds/100;
+//        System.out.println("Overall length:\n"+"MIN:"+minutes+" SEC:"+seconds);
+        return result;
     }
 
 
-    public static void sort(ArrayList<Track> arr, Styles s){
+
+
+
+//Сортировка медиатеки по стилю
+    public static ArrayList<Track> sort(ArrayList<Track> arr, Styles s){
 
         ArrayList<Track> temp=new ArrayList<Track>();
 
@@ -181,11 +205,12 @@ public class Help {
                     +temp.get(i).getTrackLength());
 
         }
+        return temp;
 
     }
 
-
-    public static void getByAmmount(ArrayList<Track> arr, double lengthAmmount){
+//Получение треков по диапазону длины
+    public static ArrayList<Track> getByAmmount(ArrayList<Track> arr, double lengthAmmount){
         ArrayList<Track> temp=new ArrayList<Track>();
 
         for(Track t:arr){
@@ -205,9 +230,12 @@ public class Help {
 
             }
         }
+        return temp;
     }
 
-    public static void isertTrack(String tName, Styles tStyle, double tLength){
+
+//Ручной ввод трека
+    public static void insertTrack(String tName, Styles tStyle, double tLength){
         ArrayList<Track> arr=getTracks("File.txt");
         int nextId=arr.size()+1;
         try{
@@ -229,4 +257,27 @@ public class Help {
     }
 
 
+    public static String gettName() {
+        return tName;
+    }
+
+    public static void settName(String tName) {
+        Help.tName = tName;
+    }
+
+    public static Styles gettStyle() {
+        return tStyle;
+    }
+
+    public static void settStyle(Styles tStyle) {
+        Help.tStyle = tStyle;
+    }
+
+    public static double gettLength() {
+        return tLength;
+    }
+
+    public static void settLength(double tLength) {
+        Help.tLength = tLength;
+    }
 }
