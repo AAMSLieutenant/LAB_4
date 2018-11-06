@@ -10,3 +10,35 @@
 2018-11-04 00:42:05 INFO  Help:31 - User made an input in Controller:dataInput()
 2018-11-04 00:42:17 INFO  Help:31 - User made an input in Controller:dataInput()
 2018-11-04 00:42:23 INFO  Help:31 - User made an input in Controller:dataInput()
+2018-11-06 13:21:58 INFO  Help:28 - Application started
+2018-11-06 13:22:06 INFO  Help:30 - User made an input in Controller:dataInput()
+2018-11-06 13:24:09 INFO  Help:28 - Application started
+2018-11-06 13:24:11 INFO  Help:30 - User made an input in Controller:dataInput()
+2018-11-06 13:25:07 INFO  Help:28 - Application started
+2018-11-06 13:25:10 INFO  Help:30 - User made an input in Controller:dataInput()
+2018-11-06 13:25:16 INFO  Help:28 - Application started
+2018-11-06 13:25:17 INFO  Help:30 - User made an input in Controller:dataInput()
+2018-11-06 13:27:56 INFO  Help:28 - Application started
+2018-11-06 13:27:58 INFO  Help:30 - User made an input in Controller:dataInput()
+2018-11-06 13:28:01 INFO  Help:30 - User made an input in Controller:dataInput()
+2018-11-06 13:28:35 INFO  Help:28 - Application started
+2018-11-06 13:28:47 INFO  Help:28 - Application started
+2018-11-06 13:28:49 INFO  Help:30 - User made an input in Controller:dataInput()
+2018-11-06 13:28:52 INFO  Help:30 - User made an input in Controller:dataInput()
+2018-11-06 13:29:01 INFO  Help:30 - User made an input in Controller:dataInput()
+2018-11-06 13:29:08 INFO  Help:30 - User made an input in Controller:dataInput()
+2018-11-06 13:29:10 INFO  Help:30 - User made an input in Controller:dataInput()
+2018-11-06 13:29:10 INFO  Help:183 - amountSort is chosen
+2018-11-06 13:29:18 INFO  Help:30 - User made an input in Controller:dataInput()
+2018-11-06 13:29:21 INFO  Help:30 - User made an input in Controller:dataInput()
+2018-11-06 13:29:21 INFO  Help:166 - sort method is chosen
+2018-11-06 13:29:31 INFO  Help:30 - User made an input in Controller:dataInput()
+2018-11-06 13:29:37 INFO  Help:70 - name of the track inserted
+2018-11-06 13:29:39 INFO  Help:84 - style of the track inserted
+2018-11-06 13:29:45 INFO  Help:97 - length of the track inserted
+2018-11-06 13:29:45 INFO  Help:101 - new track is inserted
+2018-11-06 13:29:45 INFO  Help:131 - insertData is started
+2018-11-06 13:29:47 INFO  Help:30 - User made an input in Controller:dataInput()
+2018-11-06 13:29:53 INFO  Help:30 - User made an input in Controller:dataInput()
+2018-11-06 13:29:55 INFO  Help:30 - User made an input in Controller:dataInput()
+2018-11-06 13:29:55 INFO  Help:166 - sort method is chosen
